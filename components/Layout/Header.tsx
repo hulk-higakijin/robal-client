@@ -149,7 +149,7 @@ const Header = ({ handleOpen, handleRemove, openClass }: any) => {
 
                     <ul className="sub-menu">
                       <li>
-                        <Link legacyBehavior href="/page-about">
+                        <Link legacyBehavior href="/about">
                           <a>About Us</a>
                         </Link>
                       </li>

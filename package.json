@@ -7,9 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sass": "sass --watch public/assets/scss/style.scss:public/assets/css/style.css"
+    "sass": "sass --watch public/assets/scss/style.scss:public/assets/css/style.css",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
+    "@testing-library/cypress": "^9.0.0",
+    "cypress": "^12.1.0",
     "mongoose": "^6.6.1",
     "next": "^13.0.4",
     "react": "^18.2.0",

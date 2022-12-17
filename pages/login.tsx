@@ -17,7 +17,7 @@ export default function Signin() {
                   <p className="font-sm text-muted mb-30">
                     Access to all features. No credit card required.
                   </p>
-                  <button className="btn social-login hover-up mb-20">
+                  {/* <button className="btn social-login hover-up mb-20">
                     <img
                       src="assets/imgs/template/icons/icon-google.svg"
                       alt="jobbox"
@@ -26,7 +26,7 @@ export default function Signin() {
                   </button>
                   <div className="divider-text-center">
                     <span>Or continue with</span>
-                  </div>
+                  </div> */}
                 </div>
                 <form className="login-register text-start mt-20" action="#">
                   <div className="form-group">
@@ -76,7 +76,7 @@ export default function Signin() {
                   </div>
                   <div className="text-muted text-center">
                     Don't have an Account?
-                    <Link legacyBehavior href="/page-signin">
+                    <Link legacyBehavior href="/signup">
                       <a>Sign up</a>
                     </Link>
                   </div>

@@ -61,7 +61,7 @@ export default function Signin() {
                       <span className="text-small">Remenber me</span>
                       <span className="checkmark" />
                     </label>
-                    <Link legacyBehavior href="/page-contact">
+                    <Link legacyBehavior href="/reset-password">
                       <a className="text-muted">Forgot Password</a>
                     </Link>
                   </div>

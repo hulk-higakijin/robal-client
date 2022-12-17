@@ -231,11 +231,11 @@ const Header = ({ handleOpen, handleRemove, openClass }: any) => {
             </div>
             <div className="header-right">
               <div className="block-signin">
-                <Link legacyBehavior href="page-register">
+                <Link legacyBehavior href="signup">
                   <a className="text-link-bd-btom hover-up">Register</a>
                 </Link>
 
-                <Link legacyBehavior href="page-signin">
+                <Link legacyBehavior href="login">
                   <a className="btn btn-default btn-shadow ml-40 hover-up">
                     Sign in
                   </a>

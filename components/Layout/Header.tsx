@@ -1,10 +1,14 @@
 ﻿/* eslint-disable @next/next/no-html-link-for-pages */
+import useIsSignedIn from "hooks/useIsSignedIn";
 import Link from "next/link";
 import React from "react";
 import { useState, useEffect } from "react";
+import logout from "service/logout";
 
 const Header = ({ handleOpen, handleRemove, openClass }: any) => {
   const [scroll, setScroll] = useState<boolean>(false);
+  const isSignedIn = useIsSignedIn();
+
   useEffect(() => {
     document.addEventListener("scroll", () => {
       const scrollCheck = window.scrollY > 100;
@@ -13,6 +17,7 @@ const Header = ({ handleOpen, handleRemove, openClass }: any) => {
       }
     });
   });
+
   return (
     <>
       <header
@@ -208,11 +213,16 @@ const Header = ({ handleOpen, handleRemove, openClass }: any) => {
                       </li>
                     </ul>
                   </li>
-                  <li>
-                    <Link legacyBehavior href="/page-contact">
-                      <a>Contact</a>
-                    </Link>
-                  </li>
+                  {isSignedIn && (
+                    <li>
+                      <a
+                        style={{ cursor: "pointer" }}
+                        onClick={() => logout()}
+                      >
+                        Sign Out
+                      </a>
+                    </li>
+                  )}
                 </ul>
               </nav>
               <div
@@ -230,17 +240,30 @@ const Header = ({ handleOpen, handleRemove, openClass }: any) => {
               </div>
             </div>
             <div className="header-right">
-              <div className="block-signin">
-                <Link legacyBehavior href="signup">
-                  <a className="text-link-bd-btom hover-up">Register</a>
-                </Link>
+              {!isSignedIn ? (
+                <div className="block-signin">
+                  <Link legacyBehavior href="signup">
+                    <a className="text-link-bd-btom hover-up">Register</a>
+                  </Link>
 
-                <Link legacyBehavior href="login">
-                  <a className="btn btn-default btn-shadow ml-40 hover-up">
-                    Sign in
-                  </a>
-                </Link>
-              </div>
+                  <Link legacyBehavior href="login">
+                    <a className="btn btn-default btn-shadow ml-40 hover-up">
+                      Sign in
+                    </a>
+                  </Link>
+                </div>
+              ) : (
+                <div className="image-box">
+                  <div className="has-children">
+                    <img
+                      src="https://pbs.twimg.com/profile_images/1388720052862525444/6Ge2RLYf_400x400.jpg"
+                      className="img-rounded"
+                      style={{ cursor: "pointer" }}
+                      alt="profileImage"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

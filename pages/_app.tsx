@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer position="top-center" />
       <Component {...pageProps} />
     </>
   );

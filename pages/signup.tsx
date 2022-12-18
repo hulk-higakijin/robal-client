@@ -21,12 +21,12 @@ export default function Register() {
     axios
       .post(`${process.env.NEXT_PUBLIC_ANILABO_URL}/auth`, params)
       .then((res) => {
-        toast.success("Welocome! Login agin.", { position: "top-center" });
+        toast.success("Welocome! Login agin.");
         router.push("/login");
       })
       .catch((error) => {
         const message = error.response.data.errors.full_messages[0] + ".";
-        toast.error(message, { position: "top-center" });
+        toast.error(message);
       });
   };
 

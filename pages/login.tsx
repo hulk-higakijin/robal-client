@@ -1,9 +1,44 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
+import { FormEvent, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { setCookie } from "nookies";
+import { useRouter } from "next/router";
 
 export default function Signin() {
+  const router = useRouter()
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const params = {
+      email,
+      password,
+    };
+
+    axios
+      .post(`${process.env.NEXT_PUBLIC_ANILABO_URL}/auth/sign_in`, params)
+      .then((res) => {
+        if (res.headers['uid'] && res.headers['access-token'] && res.headers['client']) {
+          setCookie(null, 'uid', res.headers['uid'], { maxAge: 24 * 60 * 60, path: '/'})
+          setCookie(null, 'accessToken', res.headers['access-token'], { maxAge: 24 * 60 * 60, path: '/'})
+          setCookie(null, 'client', res.headers['client'], { maxAge: 24 * 60 * 60, path: '/'})
+          toast.success("Login success!");
+          router.push('/jobs')
+        } else {
+          toast.error('Sorry! Failed to error!')
+        }
+      })
+      .catch((error) => {
+        const message = error.response.data.errors[0];
+        toast.error(message);
+      });
+  };
+
   return (
     <>
       <Layout>
@@ -28,18 +63,23 @@ export default function Signin() {
                     <span>Or continue with</span>
                   </div> */}
                 </div>
-                <form className="login-register text-start mt-20" action="#">
+                <form
+                  onSubmit={(e) => handleSubmit(e)}
+                  className="login-register text-start mt-20"
+                  action="#"
+                >
                   <div className="form-group">
                     <label className="form-label" htmlFor="input-1">
-                      Username or Email address *
+                      Email address *
                     </label>
                     <input
                       className="form-control"
                       id="input-1"
                       type="text"
                       required
-                      name="fullname"
-                      placeholder="Steven Job"
+                      name="email"
+                      placeholder="example@mail.com"
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                   <div className="form-group">
@@ -53,14 +93,15 @@ export default function Signin() {
                       required
                       name="password"
                       placeholder="************"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <div className="login_footer form-group d-flex justify-content-between">
-                    <label className="cb-container">
+                    {/* <label className="cb-container">
                       <input type="checkbox" />
                       <span className="text-small">Remenber me</span>
                       <span className="checkmark" />
-                    </label>
+                    </label> */}
                     <Link legacyBehavior href="/reset-password">
                       <a className="text-muted">Forgot Password</a>
                     </Link>

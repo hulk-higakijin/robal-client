@@ -21,6 +21,7 @@ const logout = () => {
       destroyCookie(null, "uid");
       destroyCookie(null, "client");
       destroyCookie(null, "accessToken");
+      destroyCookie(null, "hash_id");
       toast.success("See you later!");
       router.push("/");
     })

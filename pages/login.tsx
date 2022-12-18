@@ -23,10 +23,11 @@ export default function Signin() {
     axios
       .post(`${process.env.NEXT_PUBLIC_ANILABO_URL}/auth/sign_in`, params)
       .then((res) => {
-        if (res.headers['uid'] && res.headers['access-token'] && res.headers['client']) {
+        if (res.headers['uid'] && res.headers['access-token'] && res.headers['client'] && res.data.data.hash_id) {
           setCookie(null, 'uid', res.headers['uid'], { maxAge: 24 * 60 * 60, path: '/'})
           setCookie(null, 'accessToken', res.headers['access-token'], { maxAge: 24 * 60 * 60, path: '/'})
           setCookie(null, 'client', res.headers['client'], { maxAge: 24 * 60 * 60, path: '/'})
+          setCookie(null, 'hash_id', res.data.data.hash_id, { maxAge: 24 * 60 * 60, path: '/'})
           toast.success("Login success!");
           router.push('/jobs')
         } else {

@@ -254,14 +254,14 @@ const Header = ({ handleOpen, handleRemove, openClass }: any) => {
                 </div>
               ) : (
                 <div className="image-box">
-                  <div className="has-children">
+                  <Link href={'/profile'}>
                     <img
                       src="https://pbs.twimg.com/profile_images/1388720052862525444/6Ge2RLYf_400x400.jpg"
                       className="img-rounded"
                       style={{ cursor: "pointer" }}
                       alt="profileImage"
                     />
-                  </div>
+                  </Link>
                 </div>
               )}
             </div>

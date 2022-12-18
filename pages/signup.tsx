@@ -1,7 +1,35 @@
+import { FormEvent, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 export default function Register() {
+  const router = useRouter();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const params = {
+      email,
+      password,
+      password_confirmation: passwordConfirmation,
+    };
+    axios
+      .post(`${process.env.NEXT_PUBLIC_ANILABO_URL}/auth`, params)
+      .then((res) => {
+        toast.success("Welocome! Login agin.", { position: "top-center" });
+        router.push("/login");
+      })
+      .catch((error) => {
+        const message = error.response.data.errors.full_messages[0] + ".";
+        toast.error(message, { position: "top-center" });
+      });
+  };
+
   return (
     <>
       <Layout>
@@ -28,7 +56,11 @@ export default function Register() {
                     <span>Or continue with</span>
                   </div> */}
                 </div>
-                <form className="login-register text-start mt-20" action="#">
+                <form
+                  onSubmit={(e) => handleSubmit(e)}
+                  className="login-register text-start mt-20"
+                  action="#"
+                >
                   {/* <div className="form-group">
                     <label className="form-label" htmlFor="input-1">
                       Full Name *
@@ -52,10 +84,11 @@ export default function Register() {
                       type="email"
                       required
                       name="emailaddress"
-                      placeholder="stevenjob@gmail.com"
+                      placeholder="example@gmail.com"
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <label className="form-label" htmlFor="input-3">
                       Username *
                     </label>
@@ -67,7 +100,7 @@ export default function Register() {
                       name="username"
                       placeholder="stevenjob"
                     />
-                  </div>
+                  </div> */}
                   <div className="form-group">
                     <label className="form-label" htmlFor="input-4">
                       Password *
@@ -79,6 +112,7 @@ export default function Register() {
                       required
                       name="password"
                       placeholder="************"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <div className="form-group">
@@ -92,17 +126,18 @@ export default function Register() {
                       required
                       name="re-password"
                       placeholder="************"
+                      onChange={(e) => setPasswordConfirmation(e.target.value)}
                     />
                   </div>
                   <div className="login_footer form-group d-flex justify-content-between">
-                    <label className="cb-container">
+                    {/* <label className="cb-container">
                       <input type="checkbox" />
                       <span className="text-small">
                         Agree our terms and policy
                       </span>
                       <span className="checkmark" />
-                    </label>
-                    <Link legacyBehavior href="/page-contact">
+                    </label> */}
+                    <Link legacyBehavior href="/about">
                       <a className="text-muted">Lean more</a>
                     </Link>
                   </div>

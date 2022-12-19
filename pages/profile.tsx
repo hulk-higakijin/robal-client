@@ -1,25 +1,38 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
-import useSWR from "swr";
-import { fetcher } from "util/fetcher";
 import currentUserHashId from "util/currentUserHashId";
+import { GetServerSideProps, NextPage } from "next";
+import axios from "axios";
+import isNotFoundCode from "util/isNotFoundCode";
+import nookies from "nookies";
 
-export default function CandidateProfile() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const cookies = nookies.get(context);
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/users/${cookies.hash_id}`
+    );
+    const user = await res.data;
+    return {
+      props: { user },
+    };
+  } catch (error) {
+    return {
+      props: {},
+      notFound: isNotFoundCode(error),
+    };
+  }
+};
+
+type InitialProps = { user: User };
+
+const CandidateProfile: NextPage<InitialProps> = ({ user }) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   const handleOnClick = (index: number) => {
     setActiveIndex(index); // remove the curly braces
   };
-
-  const { data: user, error } = useSWR<User, Error>(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/${currentUserHashId}`,
-    fetcher
-  );
-  if (error) return <div>An error has occurred.</div>;
-  if (!user) return <div>Loading...</div>;
-
-  console.log(user);
 
   return (
     <>
@@ -1417,4 +1430,6 @@ export default function CandidateProfile() {
       </Layout>
     </>
   );
-}
+};
+
+export default CandidateProfile;

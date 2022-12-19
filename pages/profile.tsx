@@ -6,6 +6,7 @@ import { GetServerSideProps, NextPage } from "next";
 import axios from "axios";
 import isNotFoundCode from "util/isNotFoundCode";
 import nookies from "nookies";
+import deleteUser from "service/user/deleteUser";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const cookies = nookies.get(context);
@@ -57,7 +58,7 @@ const CandidateProfile: NextPage<InitialProps> = ({ user }) => {
                       {user.name ? user.name : "Anonymous User"}
                       <span className="card-location font-regular ml-20">
                         {user.country || user.city
-                          ? `${user.city}, ${user.country}`
+                          ? `${user.city} | ${user.country}`
                           : "unknown"}
                       </span>
                     </h5>
@@ -115,9 +116,9 @@ const CandidateProfile: NextPage<InitialProps> = ({ user }) => {
                     </ul>
                     <div className="border-bottom pt-10 pb-10" />
                     <div className="mt-20 mb-20">
-                      <Link legacyBehavior href="#">
-                        <a className="link-red">Delete Account</a>
-                      </Link>
+                      <p className="link-red" onClick={() => deleteUser()}>
+                        Delete Account
+                      </p>
                     </div>
                   </div>
                 </div>

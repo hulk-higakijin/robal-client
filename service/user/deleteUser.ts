@@ -1,13 +1,13 @@
 import axios from "axios";
 import router from "next/router";
-import { destroyCookie, parseCookies } from "nookies";
+import { destroyCookie } from "nookies";
 import { toast } from "react-toastify";
 import headers from "util/headers";
 
-const logout = () => {
+const deleteUser = () => {
   axios({
     method: "DELETE",
-    url: `${process.env.NEXT_PUBLIC_API_URL}/auth/sign_out`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/auth`,
     headers,
   })
     .then((res) => {
@@ -15,12 +15,14 @@ const logout = () => {
       destroyCookie(null, "client");
       destroyCookie(null, "accessToken");
       destroyCookie(null, "hash_id");
-      toast.success("See you later!");
-      router.push("/");
+      
+      router.push('/')
+      toast.success("Good bye! See you again!");
     })
     .catch((error) => {
-      toast.error("Faild to Logout!");
+      console.log(error)
+      toast.error("oops! Failed to delete User!")
     });
 };
 
-export default logout;
+export default deleteUser;

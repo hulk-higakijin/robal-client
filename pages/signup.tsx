@@ -19,7 +19,7 @@ export default function Register() {
       password_confirmation: passwordConfirmation,
     };
     axios
-      .post(`${process.env.NEXT_PUBLIC_ANILABO_URL}/auth`, params)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/auth`, params)
       .then((res) => {
         toast.success("Welocome! Login agin.");
         router.push("/login");

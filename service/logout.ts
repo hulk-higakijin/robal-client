@@ -14,7 +14,7 @@ const headers = {
 const logout = () => {
   axios({
     method: "DELETE",
-    url: `${process.env.NEXT_PUBLIC_ANILABO_URL}/auth/sign_out`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/auth/sign_out`,
     headers,
   })
     .then((res) => {

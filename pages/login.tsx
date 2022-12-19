@@ -9,7 +9,7 @@ import { setCookie } from "nookies";
 import { useRouter } from "next/router";
 
 export default function Signin() {
-  const router = useRouter()
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -21,17 +21,34 @@ export default function Signin() {
     };
 
     axios
-      .post(`${process.env.NEXT_PUBLIC_ANILABO_URL}/auth/sign_in`, params)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/sign_in`, params)
       .then((res) => {
-        if (res.headers['uid'] && res.headers['access-token'] && res.headers['client'] && res.data.data.hash_id) {
-          setCookie(null, 'uid', res.headers['uid'], { maxAge: 24 * 60 * 60, path: '/'})
-          setCookie(null, 'accessToken', res.headers['access-token'], { maxAge: 24 * 60 * 60, path: '/'})
-          setCookie(null, 'client', res.headers['client'], { maxAge: 24 * 60 * 60, path: '/'})
-          setCookie(null, 'hash_id', res.data.data.hash_id, { maxAge: 24 * 60 * 60, path: '/'})
+        if (
+          res.headers["uid"] &&
+          res.headers["access-token"] &&
+          res.headers["client"] &&
+          res.data.data.hash_id
+        ) {
+          setCookie(null, "uid", res.headers["uid"], {
+            maxAge: 24 * 60 * 60,
+            path: "/",
+          });
+          setCookie(null, "accessToken", res.headers["access-token"], {
+            maxAge: 24 * 60 * 60,
+            path: "/",
+          });
+          setCookie(null, "client", res.headers["client"], {
+            maxAge: 24 * 60 * 60,
+            path: "/",
+          });
+          setCookie(null, "hash_id", res.data.data.hash_id, {
+            maxAge: 24 * 60 * 60,
+            path: "/",
+          });
           toast.success("Login success!");
-          router.push('/jobs')
+          router.push("/jobs");
         } else {
-          toast.error('Sorry! Failed to error!')
+          toast.error("Sorry! Failed to error!");
         }
       })
       .catch((error) => {

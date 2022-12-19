@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import useSWR from "swr";
 import { fetcher } from "util/fetcher";
+import currentUserHashId from "util/currentUserHashId";
 
 export default function CandidateProfile() {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -12,7 +13,7 @@ export default function CandidateProfile() {
   };
 
   const { data: user, error } = useSWR<User, Error>(
-    `${process.env.NEXT_PUBLIC_ANILABO_URL}/users/1`,
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${currentUserHashId}`,
     fetcher
   );
   if (error) return <div>An error has occurred.</div>;
@@ -54,7 +55,10 @@ export default function CandidateProfile() {
                     )}
                   </div>
                   <div className="col-lg-4 col-md-12 text-lg-end">
-                    <Link legacyBehavior href={`/candidates/:id`}>
+                    <Link
+                      legacyBehavior
+                      href={`/candidates/${currentUserHashId}`}
+                    >
                       <a className="btn btn-preview-icon btn-apply btn-apply-big">
                         Preview
                       </a>

@@ -8,7 +8,7 @@ type User = {
   name?: string;
   nickname?: string;
   role: "ghost" | "candidate" | "employer";
-  twitter_url?: string;
+  twitterUrl?: string;
   web_url?: string;
   position?: string;
   bio?: string;

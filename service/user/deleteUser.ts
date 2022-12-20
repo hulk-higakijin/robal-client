@@ -20,7 +20,6 @@ const deleteUser = () => {
       toast.success("Good bye! See you again!");
     })
     .catch((error) => {
-      console.log(error)
       toast.error("oops! Failed to delete User!")
     });
 };

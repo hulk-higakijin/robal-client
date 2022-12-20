@@ -34,8 +34,8 @@ const JobCard = ({ job }: InitialProps) => {
             {job.description}
           </p>
           <div className="mt-30">
-            {job.skills.map((skill) => (
-              <Link legacyBehavior href="/job-details">
+            {job.skills.map((skill, index) => (
+              <Link key={index} legacyBehavior href="/job-details">
                 <a className="btn btn-grey-small mr-5">{skill.name}</a>
               </Link>
             ))}
@@ -43,7 +43,7 @@ const JobCard = ({ job }: InitialProps) => {
           <div className="card-2-bottom mt-30">
             <div className="row">
               <div className="col-lg-7 col-7">
-                <span className="card-text-price">{job.salaryValue}</span>
+                <span className="card-text-price">¥{job.salaryValue}</span>
                 <span className="text-muted">/{job.salaryUnit}</span>
               </div>
               <div className="col-lg-5 col-5 text-end">

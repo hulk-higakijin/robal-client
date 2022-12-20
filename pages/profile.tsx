@@ -116,7 +116,11 @@ const CandidateProfile: NextPage<InitialProps> = ({ user }) => {
                     </ul>
                     <div className="border-bottom pt-10 pb-10" />
                     <div className="mt-20 mb-20">
-                      <p className="link-red" onClick={() => deleteUser()}>
+                      <p
+                        className="link-red"
+                        onClick={() => deleteUser()}
+                        style={{ cursor: "pointer" }}
+                      >
                         Delete Account
                       </p>
                     </div>

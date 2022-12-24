@@ -1,8 +1,11 @@
 ﻿import Link from "next/link";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import { useState } from "react";
+import logout from "service/logout";
+import useIsSignedIn from "hooks/useIsSignedIn";
 
 const Sidebar = ({ openClass }: { openClass: string }) => {
+  const isSignedIn = useIsSignedIn()
   const [isActive, setIsActive] = useState<{ status: boolean; key: number }>({
     status: false,
     key: 0,
@@ -334,7 +337,7 @@ const Sidebar = ({ openClass }: { openClass: string }) => {
                 <h6 className="mb-10">Your Account</h6>
                 <ul className="mobile-menu font-heading">
                   <li>
-                    <Link legacyBehavior href="#">
+                    <Link legacyBehavior href="/profile">
                       <a>Profile</a>
                     </Link>
                   </li>
@@ -353,11 +356,13 @@ const Sidebar = ({ openClass }: { openClass: string }) => {
                       <a>Go Pro</a>
                     </Link>
                   </li>
-                  <li>
-                    <Link legacyBehavior href="/page-signin">
-                      <a>Sign Out</a>
-                    </Link>
-                  </li>
+                  {isSignedIn && (
+                    <li>
+                      <a style={{ cursor: "pointer" }} onClick={() => logout()}>
+                        Sign Out
+                      </a>
+                    </li>
+                  )}
                 </ul>
               </div>
               <div className="site-copyright">

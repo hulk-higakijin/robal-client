@@ -337,7 +337,7 @@ const Sidebar = ({ openClass }: { openClass: string }) => {
                 <h6 className="mb-10">Your Account</h6>
                 <ul className="mobile-menu font-heading">
                   <li>
-                    <Link legacyBehavior href="#">
+                    <Link legacyBehavior href="/profile">
                       <a>Profile</a>
                     </Link>
                   </li>

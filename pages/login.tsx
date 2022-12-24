@@ -87,13 +87,13 @@ export default function Signin() {
                   action="#"
                 >
                   <div className="form-group">
-                    <label className="form-label" htmlFor="input-1">
+                    <label className="form-label" htmlFor="email">
                       Email address *
                     </label>
                     <input
                       className="form-control"
-                      id="input-1"
-                      type="text"
+                      id="email"
+                      type="email"
                       required
                       name="email"
                       placeholder="example@mail.com"
@@ -101,12 +101,12 @@ export default function Signin() {
                     />
                   </div>
                   <div className="form-group">
-                    <label className="form-label" htmlFor="input-4">
+                    <label className="form-label" htmlFor="password">
                       Password *
                     </label>
                     <input
                       className="form-control"
-                      id="input-4"
+                      id="password"
                       type="password"
                       required
                       name="password"
@@ -126,6 +126,7 @@ export default function Signin() {
                   </div>
                   <div className="form-group">
                     <button
+                      id="submitButton"
                       className="btn btn-brand-1 hover-up w-100"
                       type="submit"
                       name="login"

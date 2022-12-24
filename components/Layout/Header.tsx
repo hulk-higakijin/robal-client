@@ -214,7 +214,7 @@ const Header = ({ handleOpen, handleRemove, openClass }: any) => {
                     </ul>
                   </li>
                   {isSignedIn && (
-                    <li>
+                    <li id="signOutButton">
                       <a
                         style={{ cursor: "pointer" }}
                         onClick={() => logout()}
@@ -462,7 +462,7 @@ const Header = ({ handleOpen, handleRemove, openClass }: any) => {
                 <h6 className="mb-10">Your Account</h6>
                 <ul className="mobile-menu font-heading">
                   <li>
-                    <Link legacyBehavior href="#">
+                    <Link legacyBehavior href="/profile">
                       <a>Profile</a>
                     </Link>
                   </li>
@@ -690,7 +690,7 @@ const Header = ({ handleOpen, handleRemove, openClass }: any) => {
                 <h6 className="mb-10">Your Account</h6>
                 <ul className="mobile-menu font-heading">
                   <li>
-                    <Link legacyBehavior href="#">
+                    <Link legacyBehavior href="/profile">
                       <a>Profile</a>
                     </Link>
                   </li>

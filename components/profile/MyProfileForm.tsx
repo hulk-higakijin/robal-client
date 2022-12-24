@@ -12,7 +12,6 @@ const MyProfileForm = ({ user }: InitialProps) => {
   const [webUrl, setWebUrl] = useState(user.web_url);
   const [country, setCountry] = useState(user.country);
   const [city, setCity] = useState(user.city);
-  console.log(user.web_url)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

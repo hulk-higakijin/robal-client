@@ -75,12 +75,12 @@ export default function Register() {
                     />
                   </div> */}
                   <div className="form-group">
-                    <label className="form-label" htmlFor="input-2">
+                    <label className="form-label" htmlFor="email">
                       Email *
                     </label>
                     <input
                       className="form-control"
-                      id="input-2"
+                      id="email"
                       type="email"
                       required
                       name="emailaddress"
@@ -102,12 +102,12 @@ export default function Register() {
                     />
                   </div> */}
                   <div className="form-group">
-                    <label className="form-label" htmlFor="input-4">
+                    <label className="form-label" htmlFor="password">
                       Password *
                     </label>
                     <input
                       className="form-control"
-                      id="input-4"
+                      id="password"
                       type="password"
                       required
                       name="password"
@@ -116,12 +116,12 @@ export default function Register() {
                     />
                   </div>
                   <div className="form-group">
-                    <label className="form-label" htmlFor="input-5">
+                    <label className="form-label" htmlFor="passwordConfirmation">
                       Re-Password *
                     </label>
                     <input
                       className="form-control"
-                      id="input-5"
+                      id="passwordConfirmation"
                       type="password"
                       required
                       name="re-password"
@@ -146,6 +146,7 @@ export default function Register() {
                       className="btn btn-brand-1 hover-up w-100"
                       type="submit"
                       name="login"
+                      id="submitButton"
                     >
                       Submit &amp; Register
                     </button>
@@ -170,7 +171,7 @@ export default function Register() {
                   src="assets/imgs/page/login-register/img-2.svg"
                   alt="JobBox"
                 />
-              </div>
+              </div>
             </div>
           </div>
         </section>
